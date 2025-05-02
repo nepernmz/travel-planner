@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Top Places to Visit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* General Reset and Body Styling */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Background Video */
+    .background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Header Section */
+    header {
+      background: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    /* Places Section Styling */
+    .places-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 60px;
+      background: rgba(51, 51, 51, 0.8); /* Light background to contrast with video */
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+
+    .place-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .place-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .place-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+    }
+
+    .place-info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.10);
+      color: rgb(0, 9, 133);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .place-card:hover .place-info {
+      opacity: 1;
+    }
+
+    .place-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .place-info p {
+      font-size: 1.1rem;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video autoplay muted loop class="background-video">
+    <source src="darkvideo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Top Places to Visit</h1>
+    <p>Explore the world's most exciting destinations</p>
+  </header>
+
+  <!-- Places to Visit Section -->
+  <section class="places-section">
+    <!-- Place 1 -->
+    <a href="france.html" style="text-decoration: none; color: inherit;">
+    <div class="place-card">
+      <img src="paris.jpg" alt="Paris">
+      <div class="place-info">
+        <h3>Paris, France</h3>
+        <p>Experience the romance and culture of Paris.</p>
+      </div>
+    </div>
+
+    <!-- Place 2 -->
+<a href="japan.html" style="text-decoration: none; color: inherit;">
+  <div class="place-card">
+    <img src="japan-graphic-map-small.jpg" alt="Kyoto">
+    <div class="place-info">
+      <h3>Kyoto, Japan</h3>
+      <p>Explore the ancient temples and stunning gardens of Kyoto.</p>
+    </div>
+  </div>
+</a>
+
+
+    <!-- Place 3 -->
+    <a href="europe.html" style="text-decoration: none; color: inherit;">
+    <div class="place-card">
+      <img src="usa-travel-map.jpg" alt="New York">
+      <div class="place-info">
+        <h3>New York City, USA</h3>
+        <p>Discover the hustle and bustle of the Big Apple.</p>
+    
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Travel Planner/ Parth Sarthi. | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>

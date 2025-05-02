@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -245,6 +246,8 @@
     </style>
   </head>
   <body>
+    <!-- Navigation Menu -->
+ 
     <!-- Header -->
     <header class="header">
       <nav class="nav">
@@ -252,13 +255,14 @@
         <ul class="nav_items">
           <li class="nav_item">
             <a href="#" class="nav_link" id="homeLink">Home</a>
-            <a href="#" class="nav_link" id="placesLink">Places to Travel</a>
-            <a href="#" class="nav_link">Nearest Bar</a>
+            <a href="#" class="nav_link" id="placesLink">Nearest Bar</a>
+            <a href="top-places.html" class="nav_link" target="_blank">Places to Travel</a>
             <a href="#" class="nav_link">Contact</a>
           </li>
         </ul>
         <button class="button" id="form-open">Login</button>
       </nav>
+      
     </header>
 
     <!-- Home Section -->
@@ -328,15 +332,19 @@
     Your browser does not support HTML5 video.
   </video>
 
-  <br><br><br><br><h1 class="centered-text">Top Places to Travel </h1>
+  <br><br><br><br><h1 class="centered-text">Top bar to visit </h1>
   <ul>
     <br><br>
-    <li data-index="0">Paris, France</li><br>
-    <li data-index="1">Kyoto, Japan</li><br>
-    <li data-index="2">Eastern Europe</li><br>
-    <li data-index="3">Dark Web </li>
+    <li data-index="0"> Bar in Paris, France</li><br>
+    <li data-index="1"> Bar in Kyoto, Japan</li><br>
+    <li data-index="2"> Bar in Eastern Europe</li><br>
+    <li data-index="3"> Bar in Dark Web </li>
   </ul>
 </section>
+
+
+<!-- Content Container -->
+<div class="content-container" id="content"></div>
 
     <script>
   const formOpenBtn = document.querySelector("#form-open"),
@@ -381,10 +389,10 @@
 
   // List of places with their background images
   const places = [
-    { name: "Paris, France", imageUrl: "frc.jpg" }, 
-    { name: "Kyoto, Japan", imageUrl: "woman-celebrating-chinese-new-year.jpg" },
-    { name: "Eastern Europe", imageUrl:"pripyat-chernobyl-ukraine.jpeg" },
-    { name: "Dark Web", imageUrl: "v.png" }
+    { name: " Bar in Paris, France", imageUrl: "frc.jpg" }, 
+    { name: " Bar in Kyoto, Japan", imageUrl: "woman-celebrating-chinese-new-year.jpg" },
+    { name: " Bar in Eastern Europe", imageUrl:"pripyat-chernobyl-ukraine.jpeg" },
+    { name: " Bar in Dark Web", imageUrl: "v.png" }
   ];
 
   // Show Places section and change background image
@@ -416,7 +424,7 @@
   function updatePlaceBackground(index) {
   const bgVideo = document.getElementById("bgVideo");
 
-  if (places[index].name === "Dark Web") {
+  if (places[index].name === " Bar in Dark Web") {
     // Show video background for Dark Web
     bgVideo.style.display = "block";
     bgVideo.play();
@@ -430,6 +438,17 @@
     placesSection.style.backgroundPosition = "center";
   }
 }
+
+function loadPage(page) {
+      fetch(page)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('content').innerHTML = html;
+        })
+        .catch(error => {
+          console.error('Error loading the page:', error);
+        });
+    }
 
 </script>
 <video id="bgVideo" autoplay muted loop playsinline style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1; display: none;">
