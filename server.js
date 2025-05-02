@@ -1,7 +1,9 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const path = require("path");
+const User = require("./models/User");
 
 const app = express();
 const PORT = 3000;
@@ -32,7 +34,7 @@ app.post("/signup", async (req, res) => {
   await newUser.save();
   res.send("Signup successful!");
 });
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {=
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
