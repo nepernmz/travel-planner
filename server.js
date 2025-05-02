@@ -41,3 +41,7 @@ app.post("/signup", async (req, res) => {
   await newUser.save();
   res.send("Signup successful!");
 });
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
