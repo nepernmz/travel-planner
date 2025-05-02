@@ -24,3 +24,20 @@ app.post("/signup", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb+srv://nep:<db_password>@nep.6xuuu42.mongodb.net/?retryWrites=true&w=majority&appName=nep"; {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log("MongoDB error:", err));
+
+const User = require("./models/User");
+
+app.post("/signup", async (req, res) => {
+  const { email, password } = req.body;
+  const newUser = new User({ email, password });
+  await newUser.save();
+  res.send("Signup successful!");
+});
