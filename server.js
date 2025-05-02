@@ -6,7 +6,11 @@ const path = require("path");
 const User = require("./models/User");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("MongoDB connection error:", err));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -17,25 +21,18 @@ app.post("/login", (req, res) => {
   res.send("Login received");
 });
 
-app.post("/signup", (req, res) => {
-  const { email, password } = req.body;
-  console.log("Signup:", email, password);
-  res.send("Signup successful");
-});
-
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-
 app.post("/signup", async (req, res) => {
-  const { email, password } = req.body;
-  const newUser = new User({ email, password });
-  await newUser.save();
-  res.send("Signup successful!");
+  try {
+    const { email, password } = req.body;
+    const newUser = new User({ email, password });
+    await newUser.save();
+    res.send("Signup successful!");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Signup failed");
+  }
 });
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
