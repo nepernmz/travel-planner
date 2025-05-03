@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manual Testing - Login Simulation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 15px;
+    }
+
+    select, input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      background: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #1c5980;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .success {
+      background-color: #e0f8e9;
+      color: #2c7a36;
+    }
+
+    .error {
+      background-color: #fdecea;
+      color: #c0392b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Login Functionality - Manual Testing</h1>
+  <div class="container">
+    <form id="loginForm">
+      <label for="user">Select User Role:</label>
+      <select id="user" required>
+        <option value="">-- Select --</option>
+        <option value="Admin">Admin</option>
+        <option value="Front Office">Front Office</option>
+        <option value="Personal">Personal</option>
+      </select>
+
+      <label for="password">Enter Password:</label>
+      <input type="password" id="password" required placeholder="Enter password..." />
+
+      <button type="submit">Test Login</button>
+    </form>
+
+    <div id="output" class="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const output = document.getElementById("output");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const user = document.getElementById("user").value;
+      const password = document.getElementById("password").value;
+
+      let expected = '';
+      let actual = '';
+      let success = false;
+
+      if (user === "Admin" && password === "aa") {
+        expected = actual = "Main window with all options enabled.";
+        success = true;
+      } else if (user === "Front Office" && password === "foo") {
+        expected = actual = "Main window with Employee options disabled.";
+        success = true;
+      } else if (user === "Personal" && password === "p") {
+        expected = actual = "Main window with Guest information disabled.";
+        success = true;
+      } else {
+        expected = "Access based on credentials.";
+        actual = "Login failed.";
+        success = false;
+      }
+
+      output.innerHTML = `
+        <strong>Test Case:</strong> Login with <em>${user}</em><br>
+        <strong>Expected:</strong> ${expected}<br>
+        <strong>Actual:</strong> ${actual}
+      `;
+      output.className = success ? 'result success' : 'result error';
+      output.style.display = 'block';
+    });
+  </script>
+   <a href="index.html">← Back to Home</a>
+</body>
+</html>
+
